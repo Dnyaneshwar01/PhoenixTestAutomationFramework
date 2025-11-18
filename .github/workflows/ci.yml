@@ -18,4 +18,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Execute Test Automation Framework
-      run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
+      run: mvn test -DsuiteXmlFiles='testng.xml' -Denv=qa
