@@ -23,7 +23,7 @@ jobs:
       run: mvn test -DsuiteXmlFiles='testng.xml' -Denv=qa
 
     - name: Upload a Build Artifact
-      id: always{}
+      id: always()
       uses: actions/upload-artifact@v5.0.0
       with:
         name: SureFire Report
