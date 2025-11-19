@@ -1,35 +1,49 @@
-name: Phoenix Test Automation Workflow
+name: Phonix Test Automation Workflow
 
-on:
-  push:
-    branches: [ "master" ]
+on: 
+  push: 
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+  schedule:
+    - cron: "17 10 * * *"
+    
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Enviroment"
+        type: choice
+        options: [qa,uat,dev,live]
+        default: qa
+        required: true
+      suiteXmlFile:
+       description: "suiteXmlFile"
+       type: choice
+       options: ['testng.xml', 'Regression.xml','P1Test.xml']
+       required: true
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-        
-    - name: Execute Test Automation Framework
-      run: mvn test -DsuiteXmlFiles='testng.xml' -Denv=qa
+      - name: Checkout
+        uses: actions/checkout@v4.3.1
 
-    - name: Upload a Build Artifact
-      if: always()
-      uses: actions/upload-artifact@v5.0.0
-      with:
-        name: SureFire Report
-        path: target/surefire-reports/
-        retention-days: 10
-      
-    
+      - name: Setup Java JDK
+        uses: actions/setup-java@v5.0.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-    
+      - name: Execute Test Automation Framework
+        run: mvn test -DsuiteXmlFiles='testng.xml' -Denv=qa
+
+      - name: Upload SureFire Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: SureFire Report
+          path: target/surefire-reports/
+          retention-days: 10
