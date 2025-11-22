@@ -2,6 +2,7 @@ package com.api.test;
 
 import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
+import com.api.utils.SpecUtil;
 import io.restassured.http.Header;
 import static org.hamcrest.Matchers.*;
 
@@ -17,14 +18,9 @@ public class MasterAPITest {
     @Test
     public void masterAPITest() {
 
-        Header headerMaster = new Header("Authorization", AuthTokenProvider.getToken(FD));
-
-        given().baseUri(ConfigManager.getProperty("BASE_URI")).header(headerMaster)
-                .contentType("")
+        given().spec(SpecUtil.requestSpecWithAuth(FD))
                 .when().post("master")
-                .then().log().all()
-                .statusCode(200)
-                .time(lessThan(1000L))
+                .then().spec(SpecUtil.responseSpec_OK())
                 .body("message",equalTo("Success"))
                 .body("data",notNullValue())
                 .body("data", hasKey("mst_oem"))
