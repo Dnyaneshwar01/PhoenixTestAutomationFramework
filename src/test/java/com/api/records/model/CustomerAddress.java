@@ -1,4 +1,4 @@
-package com.api.pojo;
+package com.api.records.model;
 
 public record CustomerAddress (
         String flat_number, String apartment_name,

@@ -1,4 +1,4 @@
-package com.api.pojo;
+package com.api.records.model;
 
 public record CustomerProduct (
         String dop, String serial_number, String imei1, String imei2,

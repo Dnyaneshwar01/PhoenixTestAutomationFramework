@@ -3,7 +3,7 @@ package com.api.test;
 import static io.restassured.RestAssured. *;
 
 import com.api.constant.Role;
-import com.api.pojo.*;
+import com.api.records.model.*;
 import com.api.utils.SpecUtil;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.hamcrest.Matchers;

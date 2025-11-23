@@ -1,11 +1,8 @@
 package com.api.test;
 
-import com.api.pojo.UserCredentials;
-
-import static com.api.utils.ConfigManager.*;
+import com.api.records.model.UserCredentials;
 
 import com.api.utils.SpecUtil;
-import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
