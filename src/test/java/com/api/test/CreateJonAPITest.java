@@ -1,5 +1,6 @@
 package com.api.test;
 
+import static com.api.utils.DateTimeUtil.*;
 import static io.restassured.RestAssured. *;
 
 import com.api.constant.Role;
@@ -20,8 +21,8 @@ public class CreateJonAPITest {
         Customer customer = new Customer("Dnyan", "Ubale","7878787878","","xyz@gmail.com","");
         CustomerAddress customerAddress = new CustomerAddress("c 304","Shanti Sadan","Ramdas Road",
                 "near Bhavin school","Thaltej", "4255252","India","Gujrat");
-        CustomerProduct customerProduct = new CustomerProduct("2025-04-06T18:30:00.000Z","11770514993682","187744199563682",
-                "130771949163582","2025-04-06T18:30:00.000Z",1,1);
+        CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10),"11770514993682","18774419973682",
+                "130771979163582",getTimeWithDaysAgo(10),1,1);
         Problems problems = new Problems(1, "Battery Issue");
 
         List<Problems> problemsList = new ArrayList<>();
