@@ -1,12 +1,9 @@
 package com.api.test;
 
-import com.api.pojo.UserCredentials;
-
-import static com.api.utils.ConfigManager.*;
-
-import com.api.utils.SpecUtil;
-import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
+import com.api.records.model.UserCredentials;
+import static com.api.utils.SpecUtil.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
@@ -14,19 +11,22 @@ import static io.restassured.RestAssured.*;
 
 public class LoginAPITest {
 
-    @Test
+    private UserCredentials userCredentials;
+
+    @BeforeTest(description = "Create the payload for the login API")
+    public void setup(){
+        userCredentials = new UserCredentials("iamfd", "password");
+    }
+
+    @Test (description = "Verifying if login is working for FD user", groups = {"api","regression","smoke"})
     public void loginAPITest() {
 
-        UserCredentials userCredentials = new UserCredentials("iamfd", "password");
-
         given()
-                .spec(SpecUtil.requestSpec(userCredentials))
-
+                .spec(requestSpec(userCredentials))
                 .when().post("login")
-
                 .then()
-                .spec(SpecUtil.responseSpec_OK())
+                .spec(responseSpec_OK())
                 .body("message",equalTo("Success"))
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
+                .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
     }
 }
