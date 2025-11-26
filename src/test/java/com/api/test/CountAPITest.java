@@ -17,7 +17,7 @@ public class CountAPITest {
                 .then().spec(responseSpec_OK())
                 .body("message", equalTo("Success"))
                 .body("data", notNullValue())
-                 .body("data.size()", equalTo(3))
+                .body("data.size()", equalTo(3))
                 .body("data.count",everyItem(greaterThanOrEqualTo(0)))
                 .body("data.label",everyItem(not(blankOrNullString())))
                 .body(matchesJsonSchemaInClasspath("response-schema/CountAPIRequestSchema-FD.json"))
