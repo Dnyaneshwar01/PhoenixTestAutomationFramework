@@ -7,8 +7,6 @@ on:
     branches: ["master"]
   schedule:
     - cron: "17 10 * * *"
-    - cron: "30 17 * * *"
-    - cron: "12 10 * * *"
     
   workflow_dispatch:
     inputs:
@@ -39,8 +37,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Defult value for Execution
+        id: default
+        run: |
+              echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml'}}" >> $GITHUB_OUTPUT
+              echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
+
       - name: Execute Test Automation Framework
-        run: mvn test -DsuiteXmlFiles="${{github.event.inputs.suiteXmlFile}}" -Denv="{{github.event.inputs.env}}"
+        run: mvn test -DsuiteXmlFiles="${{ steps.default.outputs.suiteXmlFile}}" -Denv="${{ steps.default.outputs.env}}"
 
       - name: Upload SureFire Report Artifact
         if: always()
