@@ -8,6 +8,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
 public class CountAPITest {
 
     @Test(description = "Verify the count API is giving correct response", groups = {"api","smoke", "regression"})

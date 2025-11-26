@@ -9,6 +9,10 @@ import org.testng.annotations.Test;
 import static com.api.constant.Role.*;
 import static io.restassured.RestAssured.*;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
+
 public class MasterAPITest {
 
 

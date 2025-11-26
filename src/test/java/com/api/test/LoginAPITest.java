@@ -9,6 +9,10 @@ import static org.hamcrest.Matchers.*;
 
 import static io.restassured.RestAssured.*;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
+
 public class LoginAPITest {
 
     private UserCredentials userCredentials;
