@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateJonAPITest {
+public class CreateJobAPITest {
 
     CreateJobPayload createJobPayload;
 
