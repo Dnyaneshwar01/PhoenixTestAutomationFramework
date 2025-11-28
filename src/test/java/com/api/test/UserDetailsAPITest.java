@@ -5,6 +5,11 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 
+
+/**
+ * @author Dnyaneshwar Ubale
+ */
+
 public class UserDetailsAPITest {
 
     @Test(description = "Verify if the user details API response is shown correctly", groups = {"api","smoke", "regression"})
