@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author  Dnyaneshwar Ubale
  */
-public class CreateJonAPITest {
+public class CreateJobAPITest {
 
     CreateJobPayload createJobPayload;
 
