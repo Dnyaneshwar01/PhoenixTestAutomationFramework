@@ -1,13 +1,14 @@
-package com.data.csv;
+package com.dataProvider.api.bean;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Bean {
+public class UserBean {
     @CsvBindByName(column = "username")
     private String userName;
-    @CsvBindByName(column = "password")    private String password;
+    @CsvBindByName(column = "password")
+    private String password;
 
-    public Bean(){
+    public UserBean(){
 
     }
 
@@ -21,7 +22,7 @@ public class Bean {
 
     @Override
     public String toString() {
-        return "Bean{" +
+        return "UserBean{" +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
