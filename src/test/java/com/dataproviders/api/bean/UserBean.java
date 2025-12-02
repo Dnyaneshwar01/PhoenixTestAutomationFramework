@@ -1,10 +1,10 @@
-package com.dataProvider.api.bean;
+package com.dataproviders.api.bean;
 
 import com.opencsv.bean.CsvBindByName;
 
 public class UserBean {
     @CsvBindByName(column = "username")
-    private String userName;
+    private String username;
     @CsvBindByName(column = "password")
     private String password;
 
@@ -16,14 +16,14 @@ public class UserBean {
         return password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     @Override
     public String toString() {
         return "UserBean{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
