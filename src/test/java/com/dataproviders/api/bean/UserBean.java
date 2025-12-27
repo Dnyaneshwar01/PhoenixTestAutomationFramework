@@ -9,7 +9,6 @@ public class UserBean {
     private String password;
 
     public UserBean(){
-
     }
 
     public String getPassword() {
@@ -27,4 +26,8 @@ public class UserBean {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
+
+
 }

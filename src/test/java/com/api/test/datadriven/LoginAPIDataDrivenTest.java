@@ -17,13 +17,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginAPIDataDrivenTest {
 
-    private UserCredentials userCredentials;
-
-    @BeforeTest(description = "Create the payload for the login API")
-    public void setup(){
-        userCredentials = new UserCredentials("iamfd", "password");
-    }
-
     @Test (description = "Verifying if login is working for FD user",
             groups = {"api","regression","Datadriven"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
