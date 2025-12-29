@@ -9,9 +9,11 @@ public enum ServiceLocation {
     int code;
 
     ServiceLocation(int code){
+
         this.code = code;
     }
-    public int getCode(){
+
+    public int getCode() {
         return code;
     }
 }
