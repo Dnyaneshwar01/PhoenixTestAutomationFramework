@@ -19,7 +19,7 @@ on:
       suiteXmlFile:
        description: "suiteXmlFile"
        type: choice
-       options: ['testng.xml', 'Regression.xml','P1Test.xml']
+       options: ['testng.xml', 'Regression.xml', 'testng-datadriven.xml']
        required: true
 
 jobs:
