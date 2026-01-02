@@ -21,7 +21,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 public class CreateJobAPIDateDrivenTest {
 
     @Test(description = "Verify if the create API is able to create Inwarranty job",
-            groups = {"api","dataDriven", "regression"},
+            groups = {"api","dataDriven", "regression","csv"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
             dataProvider = "CreateJobAPIDataProvider"
     )
