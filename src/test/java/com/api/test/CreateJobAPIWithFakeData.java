@@ -1,15 +1,12 @@
-package com.api.test.datadriven;
+package com.api.test;
 
 import com.api.constant.*;
 import com.api.records.model.*;
+import com.api.utils.FakerDataGenerator;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.api.utils.DateTimeUtil.getTimeWithDaysAgo;
 import static com.api.utils.SpecUtil.requestSpecWithAuth;
 import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.RestAssured.given;
@@ -18,14 +15,19 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 /**
  * @author  Dnyaneshwar Ubale
  */
-public class CreateJobAPIDateDrivenTest {
+public class CreateJobAPIWithFakeData {
 
-    @Test(description = "Verify if the create API is able to create Inwarranty job",
-            groups = {"api","dataDriven", "regression","csv"},
-            dataProviderClass = com.dataproviders.DataProviderUtils.class,
-            dataProvider = "CreateJobAPIDataProvider"
-    )
-    public void createJobAPITest(CreateJobPayload createJobPayload) {
+    private CreateJobPayload createJobPayload;
+    private static final String COUNTRY = "India";
+
+    @BeforeTest(description = "Creating create job API Payload")
+    public void setup(){
+        createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+    }
+
+    @Test(description = "Verify if the create API is able to create Inwarranty job", groups = {"api","smoke", "regression"})
+    public void createJobAPITest() {
+
         given().spec(requestSpecWithAuth(Role.FD,createJobPayload))
                 .when().post("job/create")
                 .then()
