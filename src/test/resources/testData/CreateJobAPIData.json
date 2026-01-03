@@ -1,0 +1,84 @@
+[
+  {
+    "mst_service_location_id": 0,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+      "first_name": "Forrest",
+      "last_name": "Kuhn",
+      "mobile_number": "382-948-1342",
+      "mobile_number_alt": "633-994-2660",
+      "email_id": "Ian.Graham@yahoo.com",
+      "email_id_alt": "Vergie78@yahoo.com"
+    },
+    "customer_address": {
+      "flat_number": "97",
+      "apartment_name": "97",
+      "street_name": " Devgaon ",
+      "landmark": "Goregaon",
+      "area": "Aurangabad",
+      "pincode": "431115",
+      "country": "India",
+      "state": "Maharashtra"
+    },
+    "customer_product": {
+      "dop": "2025-05-31T18:30:00.000Z",
+      "serial_number": "150354935940598",
+      "imei1": "150354935940598",
+      "imei2": "1500354935940598",
+      "popurl": "2025-05-31T18:30:00.000Z",
+      "product_id": 1,
+      "mst_model_id": 1
+    },
+    "problems": [
+      {
+        "id": 4,
+        "remark": "Phone not working facing charging problems"
+      },
+      {
+        "id": 2,
+        "remark": "Not Working"
+      }
+    ]
+  },
+  {
+    "mst_service_location_id": 0,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+      "first_name": "Forrest",
+      "last_name": "Kuhn",
+      "mobile_number": "382-948-1342",
+      "mobile_number_alt": "633-994-2660",
+      "email_id": "Ian.Graham@yahoo.com",
+      "email_id_alt": "Vergie78@yahoo.com"
+    },
+    "customer_address": {
+      "flat_number": "97",
+      "apartment_name": "97",
+      "street_name": " Devgaon ",
+      "landmark": "Goregaon",
+      "area": "Aurangabad",
+      "pincode": "431115",
+      "country": "India",
+      "state": "Maharashtra"
+    },
+    "customer_product": {
+      "dop": "2025-05-31T18:30:00.000Z",
+      "serial_number": "105354935940598",
+      "imei1": "105354935940598",
+      "imei2": "105354935940598",
+      "popurl": "2025-05-31T18:30:00.000Z",
+      "product_id": 1,
+      "mst_model_id": 1
+    },
+    "problems": [
+      {
+        "id": 1,
+        "remark": "Battary issue"
+      }
+    ]
+  }
+]
