@@ -61,15 +61,14 @@ public class DataProviderUtils {
 
     @DataProvider(name = "LoginAPIExcelDataProvider", parallel = true)
     public static Iterator<UserBean> loginAPIExcelDataProvider(){
-        return ExcelReaderUtil2.loadTestData("LoginTestData", UserBean.class);
+        return ExcelReaderUtil.loadTestData("LoginTestData", UserBean.class);
     }
 
     @DataProvider(name = "CreateJobAPIExcelDataProvider", parallel = true)
     public static Iterator<CreateJobPayload> CreateJobAPIExcelDataProvider(){
-        Iterator<CreateJobBean> iterator = ExcelReaderUtil2.loadTestData("CreateJobTestData", CreateJobBean.class);
+        Iterator<CreateJobBean> iterator = ExcelReaderUtil.loadTestData("CreateJobTestData", CreateJobBean.class);
 
         List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
-
         CreateJobBean tempBean;
         CreateJobPayload tempPayload;
 
@@ -78,7 +77,6 @@ public class DataProviderUtils {
             tempPayload = CreateJobBeanMapper.mapper(tempBean);
             payloadList.add(tempPayload);
         }
-
         return payloadList.iterator();
     }
 

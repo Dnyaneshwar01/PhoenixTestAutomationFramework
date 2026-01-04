@@ -1,35 +1,33 @@
 package com.api.utils;
 
-
-import org.apache.poi.xssf.usermodel.*;
+import com.poiji.bind.Poiji;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
 public class ExcelReaderUtil {
 
-    public static void main(String[] args)  {
+    private ExcelReaderUtil() {
 
+    }
+    public static <T> Iterator<T> loadTestData(String sheetName , Class<T> clazz) {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("testData/PhoenixTestData.xlsx");
-
-        XSSFWorkbook xssfWorkbook = null;
+        XSSFWorkbook myWorkBook = null;
         try {
-            xssfWorkbook = new XSSFWorkbook(inputStream);
+            myWorkBook = new XSSFWorkbook(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        XSSFSheet sheet =  xssfWorkbook.getSheet("Sheet1");
-        int lastRowNumber = sheet.getLastRowNum();
-        XSSFRow rowNumber = sheet.getRow(0);
-        int lastCellNum = rowNumber.getLastCellNum();
+        XSSFSheet mySheet = myWorkBook.getSheet(sheetName);
 
-        for(int row =0;  row<=lastRowNumber; row++){
-            for(int column = 0; column<lastCellNum; column++){
-                rowNumber = sheet.getRow(row);
-                XSSFCell cell = rowNumber.getCell(column);
-                System.out.print(cell + " ");
-            }
-            System.out.println();
-        }
+        List<T> dataList =  Poiji.fromExcel(mySheet, clazz);
+        return dataList.iterator();
     }
 }
