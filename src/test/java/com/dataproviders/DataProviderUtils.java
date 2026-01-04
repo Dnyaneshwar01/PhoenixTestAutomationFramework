@@ -2,10 +2,7 @@ package com.dataproviders;
 
 import com.api.records.model.CreateJobPayload;
 import com.api.records.model.UserCredentials;
-import com.api.utils.CSVReaderUtility;
-import com.api.utils.CreateJobBeanMapper;
-import com.api.utils.FakerDataGenerator;
-import com.api.utils.JsonReaderUtil;
+import com.api.utils.*;
 import com.dataproviders.api.bean.CreateJobBean;
 import com.dataproviders.api.bean.UserBean;
 import org.testng.annotations.DataProvider;
@@ -13,6 +10,10 @@ import org.testng.annotations.DataProvider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+/**
+ * @author Dnyaneshwar Ubale
+ */
 
 public class DataProviderUtils {
 
@@ -58,7 +59,25 @@ public class DataProviderUtils {
         return JsonReaderUtil.loadJSON("testData/CreateJobAPIData.json",CreateJobPayload[].class);
     }
 
+    @DataProvider(name = "LoginAPIExcelDataProvider", parallel = true)
+    public static Iterator<UserBean> loginAPIExcelDataProvider(){
+        return ExcelReaderUtil.loadTestData("LoginTestData", UserBean.class);
+    }
 
+    @DataProvider(name = "CreateJobAPIExcelDataProvider", parallel = true)
+    public static Iterator<CreateJobPayload> CreateJobAPIExcelDataProvider(){
+        Iterator<CreateJobBean> iterator = ExcelReaderUtil.loadTestData("CreateJobTestData", CreateJobBean.class);
 
+        List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
+        CreateJobBean tempBean;
+        CreateJobPayload tempPayload;
+
+        while (iterator.hasNext()){
+            tempBean = iterator.next();
+            tempPayload = CreateJobBeanMapper.mapper(tempBean);
+            payloadList.add(tempPayload);
+        }
+        return payloadList.iterator();
+    }
 
 }
