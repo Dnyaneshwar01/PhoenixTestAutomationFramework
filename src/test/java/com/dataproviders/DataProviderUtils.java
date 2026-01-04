@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
+
 public class DataProviderUtils {
 
     @DataProvider(name = "LoginAPIDataProvider", parallel = true)
@@ -56,11 +60,8 @@ public class DataProviderUtils {
     }
 
     @DataProvider(name = "LoginAPIExcelDataProvider", parallel = true)
-    public static Iterator<UserCredentials> loginAPIExcelDataProvider(){
-        return ExcelReaderUtil2.loadTestData();
+    public static Iterator<UserBean> loginAPIExcelDataProvider(){
+        return ExcelReaderUtil2.loadTestData("LoginTestData", UserBean.class);
     }
-
-
-
 
 }

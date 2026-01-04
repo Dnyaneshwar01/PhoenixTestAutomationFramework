@@ -1,6 +1,6 @@
 package com.api.test.datadriven;
 
-import com.api.records.model.UserCredentials;
+import com.dataproviders.api.bean.UserBean;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.requestSpec;
@@ -15,14 +15,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginAPIExcelDataDrivenTest {
 
-    @Test (description = "Verifying if login is working for FD user",
-            groups = {"api","regression","Datadriven"},
+    @Test (description = "Verifying if login is working for FD user with multiple users",
+            groups = {"api","regression","dataDriven"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
             dataProvider = "LoginAPIExcelDataProvider"
     )
-    public void loginAPITest(UserCredentials userCredentials) {
+    public void loginAPITest(UserBean userBean) {
         given()
-                .spec(requestSpec(userCredentials))
+                .spec(requestSpec(userBean))
                 .when().post("login")
                 .then()
                 .spec(responseSpec_OK())

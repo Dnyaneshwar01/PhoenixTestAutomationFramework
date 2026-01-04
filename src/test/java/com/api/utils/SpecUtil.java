@@ -11,6 +11,9 @@ import org.hamcrest.Matchers;
 
 import static com.api.utils.ConfigManager.*;
 
+/**
+ * @author Dnyaneshwar Ubale
+ */
 public class SpecUtil {
 
     //GET_DELETE
