@@ -1,8 +1,6 @@
 package com.api.test.datadriven;
 
-import com.api.records.model.UserCredentials;
 import com.dataproviders.api.bean.UserBean;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.requestSpec;
@@ -23,13 +21,11 @@ public class LoginAPIDataDrivenTest {
             dataProvider = "LoginAPIDataProvider"
     )
     public void loginAPITest(UserBean userBean) {
-
-        given()
-                .spec(requestSpec(userBean))
+        given().spec(requestSpec(userBean))
                 .when().post("login")
                 .then()
                 .spec(responseSpec_OK())
-                .body("message",equalTo("Success"))
+                .body("message", equalTo("Success"))
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
     }
 }

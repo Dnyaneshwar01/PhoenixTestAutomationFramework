@@ -32,7 +32,7 @@ public class DataProviderUtils {
         CreateJobBean tempBean;
         CreateJobPayload tempPayload;
 
-        while (createJobBeanIterator.hasNext()){
+        while (createJobBeanIterator.hasNext()) {
             tempBean = createJobBeanIterator.next();
             tempPayload = CreateJobBeanMapper.mapper(tempBean);
             payloadList.add(tempPayload);
