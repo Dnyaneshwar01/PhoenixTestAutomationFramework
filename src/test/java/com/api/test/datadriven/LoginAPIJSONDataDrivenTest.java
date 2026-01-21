@@ -15,19 +15,18 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginAPIJSONDataDrivenTest {
 
-    @Test (description = "Verifying if login is working for FD user",
-            groups = {"api","regression","Datadriven"},
+    @Test(description = "Verifying if login is working for FD user",
+            groups = {"api", "regression", "Datadriven"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
             dataProvider = "LoginAPIJSONDataProvider"
     )
     public void loginAPITest(UserCredentials userCredentials) {
 
-        given()
-                .spec(requestSpec(userCredentials))
+        given().spec(requestSpec(userCredentials))
                 .when().post("login")
                 .then()
                 .spec(responseSpec_OK())
-                .body("message",equalTo("Success"))
+                .body("message", equalTo("Success"))
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
     }
 }
