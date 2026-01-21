@@ -100,18 +100,9 @@ public class CreateJobPayloadDataDao {
 
                 beanList.add(createJobBean);
             }
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        for (CreateJobBean b :beanList){
-            System.out.println(b);
-        }
-
         return beanList;
-
     }
-
 }
