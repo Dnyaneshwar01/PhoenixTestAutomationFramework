@@ -1,6 +1,7 @@
 package com.database.dao;
 
 import com.database.model.CustomerAddressDBModel;
+import com.database.model.CustomerProductDBModel;
 
 public class DemoDaoRunner {
 
@@ -8,7 +9,10 @@ public class DemoDaoRunner {
         //CustomerDBModel customerDBModel = CustomerDao.getCustomerInfo(165206);
 //        System.out.println(customerDBModel);
 
-        CustomerAddressDBModel customerAddressDBModel = CustomerAddressDao.getCustomerAddressData(165396);
-        System.out.println(customerAddressDBModel);
+//        CustomerAddressDBModel customerAddressDBModel = CustomerAddressDao.getCustomerAddressData(165396);
+//        System.out.println(customerAddressDBModel);
+
+        CustomerProductDBModel customerProductDBModel = CustomerProductDao.getCustomerProductData(165386);
+        System.out.println(customerProductDBModel);
     }
 }

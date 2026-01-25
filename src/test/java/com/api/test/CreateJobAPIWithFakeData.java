@@ -53,7 +53,6 @@ public class CreateJobAPIWithFakeData {
         Assert.assertEquals(actualCustomerDataInDB.getEmail_id(), expectedCustomerData.email_id(), "Primary email ID mismatch between DB and expected data");
         Assert.assertEquals(actualCustomerDataInDB.getEmail_id_alt(), expectedCustomerData.email_id_alt(), "Alternate email ID mismatch between DB and expected data");
 
-
         CustomerAddressDBModel customerAddressFromDB = CustomerAddressDao.getCustomerAddressData(actualCustomerDataInDB.getTr_customer_address_id());
 
         Assert.assertEquals(customerAddressFromDB.getFlat_number(), createJobPayload.customer_address().flat_number(), "Flat number mismatch between DB and expected data");
