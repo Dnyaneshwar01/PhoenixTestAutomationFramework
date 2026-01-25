@@ -2,6 +2,8 @@ package com.api.test;
 
 import com.api.constant.*;
 import com.api.records.model.*;
+import com.api.response.model.CreateJobResponseModel;
+import com.api.utils.JavaUtils;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
@@ -35,11 +37,11 @@ public class CreateJobAPIWithDBValidationTest {
 
     @BeforeTest(description = "Creating create job API Payload")
     public void setup() {
+        String imeiNo = JavaUtils.getRandomNumber(14);
         customer = new Customer("Dnyaneshwar", "Sharma", "7878787878", "78787878787", "sharmauser01@gmail.com", "");
         customerAddress = new CustomerAddress("c 304", "Shanti Sadan", "Ramdas Road",
                 "near Bhavin school", "Thaltej", "4255252", "India", "Gujrat");
-        customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "550779079163713", "550779079163713",
-                "550779079163713", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+        customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), imeiNo, imeiNo, imeiNo, getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
         Problems problems = new Problems(problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 
         List<Problems> problemsList = new ArrayList<>();
@@ -52,7 +54,7 @@ public class CreateJobAPIWithDBValidationTest {
     @Test(description = "Verify if the create API is able to create Inwarranty job", groups = {"api", "smoke", "regression"})
     public void createJobAPITest() {
 
-        Response response = given().spec(requestSpecWithAuth(Role.FD, createJobPayload))
+        CreateJobResponseModel createJobResponseModel = given().spec(requestSpecWithAuth(Role.FD, createJobPayload))
                 .when().post("job/create")
                 .then()
                 .spec(responseSpec_OK())
@@ -61,10 +63,10 @@ public class CreateJobAPIWithDBValidationTest {
                 .body("data.mst_service_location_id", Matchers.equalTo(1))
                 .body("data.job_number", Matchers.startsWith("JOB_"))
                 .body("data.id", Matchers.notNullValue())
-                .extract().response();
+                .extract().as(CreateJobResponseModel.class);
 
         System.out.println("--------------------------------------------");
-        int customerId = response.body().jsonPath().getInt("data.tr_customer_id");
+        int customerId = createJobResponseModel.getData().getTr_customer_id();
         System.out.println("Customer ID: " + customerId);
 
         CustomerDBModel customerDateFromDBModel = CustomerDao.getCustomerInfo(customerId);
@@ -74,8 +76,6 @@ public class CreateJobAPIWithDBValidationTest {
         Assert.assertEquals(customer.mobile_number(), customerDateFromDBModel.getMobile_number(), "Mobile number mismatch between API and DB");
         Assert.assertEquals(customer.email_id(), customerDateFromDBModel.getEmail_id(), "Primary email mismatch between API and DB");
         Assert.assertEquals(customer.email_id_alt(), customerDateFromDBModel.getEmail_id_alt(), "Alternate email mismatch between API and DB");
-
-        System.out.println("----------------------------------------------------------");
 
         CustomerAddressDBModel customerAddressFromDB = CustomerAddressDao.getCustomerAddressData(customerDateFromDBModel.getTr_customer_address_id());
         Assert.assertEquals(customerAddressFromDB.getFlat_number(), customerAddress.flat_number(), "Flat number mismatch in customer address");
@@ -87,7 +87,7 @@ public class CreateJobAPIWithDBValidationTest {
 
         System.out.println("-------------------------------------------------------------");
 
-        int productId = response.jsonPath().getInt("data.tr_customer_product_id");
+        int productId = createJobResponseModel.getData().getTr_customer_product_id();
         System.out.println("productId: " + productId);
 
         CustomerProductDBModel customerProductDBModel = CustomerProductDao.getCustomerProductData(productId);
