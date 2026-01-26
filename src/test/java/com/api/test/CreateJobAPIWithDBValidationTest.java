@@ -7,10 +7,11 @@ import com.api.utils.JavaUtils;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
+import com.database.dao.MapJobProblelmDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
-import io.restassured.response.Response;
+import com.database.model.MapJobProblemModel;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -98,5 +99,12 @@ public class CreateJobAPIWithDBValidationTest {
         Assert.assertTrue(customerProduct.dop().contains(customerProductDBModel.getDop()), "Date of purchase mismatch in customer product");
         Assert.assertEquals(customerProductDBModel.getMst_model_id(), customerProduct.mst_model_id(), "Model ID mismatch in customer product");
 
+        System.out.println("---------------------------------------------------------------------");
+        int tr_job_head_id = createJobResponseModel.getData().getId();
+        MapJobProblemModel mapJobProblemModel = MapJobProblelmDao.getProblemDetails(tr_job_head_id);
+
+        System.out.println(mapJobProblemModel);
+        Assert.assertEquals(mapJobProblemModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
+        Assert.assertEquals(mapJobProblemModel.getRemark(), createJobPayload.problems().get(0).remark());
     }
 }
