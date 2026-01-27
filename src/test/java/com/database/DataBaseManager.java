@@ -23,7 +23,6 @@ public class DataBaseManager {
     private volatile static HikariDataSource hikariDataSource;
     private static Connection connection;
 
-
     private static void initializePool() {
 
         if (hikariDataSource == null) {

@@ -8,6 +8,8 @@
             <class name="com.api.test.MasterAPITest"/>
             <class name="com.api.test.CountAPITest"/>
             <class name="com.api.test.CreateJobAPITest"></class>
+            <class name="com.api.test.CreateJobAPIWithDBValidationTest"></class>
+            <class name="com.api.test.CreateJobAPIWithFakeData"></class>
         </classes>
     </test>
 </suite>
