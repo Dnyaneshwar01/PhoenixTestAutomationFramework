@@ -5,8 +5,10 @@ import com.api.records.model.*;
 import com.api.utils.FakerDataGenerator;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
+import com.database.dao.JobHeadDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
+import com.database.model.JobHeadModel;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -27,6 +29,7 @@ public class CreateJobAPIWithFakeData {
 
     @BeforeTest(description = "Creating create job API Payload")
     public void setup() {
+
         createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
     }
 
@@ -61,5 +64,11 @@ public class CreateJobAPIWithFakeData {
         Assert.assertEquals(customerAddressFromDB.getState(), createJobPayload.customer_address().state(), "state mistmatch between DB and expected data");
         Assert.assertEquals(customerAddressFromDB.getStreet_name(), createJobPayload.customer_address().street_name(), "Street name mistmatch between DB and expected data");
         Assert.assertEquals(customerAddressFromDB.getPincode(), createJobPayload.customer_address().pincode(), "pincode mistmatch between DB and expected data");
+
+        JobHeadModel jobHeadModel  = JobHeadDao.getDataFromJobHead(customerId);
+        Assert.assertEquals(jobHeadModel.getMst_oem_id(), createJobPayload.mst_oem_id(),"Oem id mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_platform_id(), createJobPayload.mst_platform_id(),"Platform id mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id(),"warrenty_status mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_platform_id(), createJobPayload.mst_platform_id(),"platform id mismatch");
     }
 }

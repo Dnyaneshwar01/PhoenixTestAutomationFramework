@@ -4,14 +4,8 @@ import com.api.constant.*;
 import com.api.records.model.*;
 import com.api.response.model.CreateJobResponseModel;
 import com.api.utils.JavaUtils;
-import com.database.dao.CustomerAddressDao;
-import com.database.dao.CustomerDao;
-import com.database.dao.CustomerProductDao;
-import com.database.dao.MapJobProblelmDao;
-import com.database.model.CustomerAddressDBModel;
-import com.database.model.CustomerDBModel;
-import com.database.model.CustomerProductDBModel;
-import com.database.model.MapJobProblemModel;
+import com.database.dao.*;
+import com.database.model.*;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -103,8 +97,17 @@ public class CreateJobAPIWithDBValidationTest {
         int tr_job_head_id = createJobResponseModel.getData().getId();
         MapJobProblemModel mapJobProblemModel = MapJobProblelmDao.getProblemDetails(tr_job_head_id);
 
-        System.out.println(mapJobProblemModel);
         Assert.assertEquals(mapJobProblemModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
         Assert.assertEquals(mapJobProblemModel.getRemark(), createJobPayload.problems().get(0).remark());
+
+        System.out.println("---------------------------------------------------------------------");
+
+        int tr_customer_id = createJobResponseModel.getData().getTr_customer_id();
+        JobHeadModel jobHeadModel  = JobHeadDao.getDataFromJobHead(tr_customer_id);
+        Assert.assertEquals(jobHeadModel.getMst_oem_id(), createJobPayload.mst_oem_id(),"Oem id mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_platform_id(), createJobPayload.mst_platform_id(),"Platform id mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id(),"warrenty_status mismatch");
+        Assert.assertEquals(jobHeadModel.getMst_platform_id(), createJobPayload.mst_platform_id(),"platform id mismatch");
+
     }
 }

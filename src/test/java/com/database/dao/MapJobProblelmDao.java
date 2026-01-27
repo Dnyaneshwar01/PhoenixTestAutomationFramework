@@ -15,7 +15,6 @@ public class MapJobProblelmDao {
                     select * from map_job_problem WHERE tr_job_head_id = ?;
                     """;
 
-    //166674
 
     public static MapJobProblemModel getProblemDetails(int tr_job_head_id) {
 
