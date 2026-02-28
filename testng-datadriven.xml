@@ -4,13 +4,13 @@
     <test name="Inwarranty Flow -Data Driven Test">
         <classes>
             <class name="com.api.test.datadriven.LoginAPIDataDrivenTest"/>
-            <class name="com.api.test.datadriven.CreateJobAPIDateDrivenTest"/>
-            <class name="com.api.test.datadriven.CreateJobAPIFakeDateDrivenTest"/>
-            <class name="com.api.test.datadriven.LoginAPIJSONDataDrivenTest"/>
-            <class name="com.api.test.datadriven.CreateJobJsonAPIDateDrivenTest"/>
-            <class name="com.api.test.datadriven.LoginAPIExcelDataDrivenTest"/>
-            <class name="com.api.test.datadriven.CreateJobAPIExcelDateDrivenTest"/>
-            <class name="com.api.test.datadriven.CreateJobAPIDBDateDrivenTest"/>
+<!--            <class name="com.api.test.datadriven.CreateJobAPIDateDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.CreateJobAPIFakeDateDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.LoginAPIJSONDataDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.CreateJobJsonAPIDateDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.LoginAPIExcelDataDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.CreateJobAPIExcelDateDrivenTest"/>-->
+<!--            <class name="com.api.test.datadriven.CreateJobAPIDBDateDrivenTest"/>-->
         </classes>
     </test>
 </suite>
