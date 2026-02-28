@@ -1,4 +1,4 @@
 package com.api.records.model;
 
-public record DetailAPIKeys() {
+public record DetailAPIKeys(String details_key) {
 }
