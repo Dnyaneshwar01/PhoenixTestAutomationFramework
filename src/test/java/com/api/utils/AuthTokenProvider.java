@@ -7,27 +7,36 @@ import com.api.records.model.UserCredentials;
 import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import static io.restassured.RestAssured.*;
 
 public class AuthTokenProvider {
 
-    private AuthTokenProvider() {}
+    private static Map<Role, String> tokenCache = new ConcurrentHashMap<>();
+
+    private AuthTokenProvider() {
+    }
 
     public static String getToken(Role role) {
 
-        UserCredentials userCredentials = null;
-        if(role == FD){
-            userCredentials = new UserCredentials("iamfd","password");
-        }
-        else if(role == SUP) {
-            userCredentials = new UserCredentials("iamsup","password");
-        } else if (role == ENG) {
-            userCredentials = new UserCredentials("iameng","password");
-        } else if (role == QC) {
-            userCredentials = new UserCredentials("iamqc","password");
+        if (tokenCache.containsKey(role)) {
+            return tokenCache.get(role);
         }
 
-        String token =  given().baseUri(ConfigManager.getProperty("BASE_URI"))
+        UserCredentials userCredentials = null;
+        if (role == FD) {
+            userCredentials = new UserCredentials("iamfd", "password");
+        } else if (role == SUP) {
+            userCredentials = new UserCredentials("iamsup", "password");
+        } else if (role == ENG) {
+            userCredentials = new UserCredentials("iameng", "password");
+        } else if (role == QC) {
+            userCredentials = new UserCredentials("iamqc", "password");
+        }
+
+        String token = given().baseUri(ConfigManager.getProperty("BASE_URI"))
                 .contentType(ContentType.JSON)
                 .body(userCredentials)
                 .when().post("login")
@@ -35,6 +44,8 @@ public class AuthTokenProvider {
                 .statusCode(200)
                 .body("message", Matchers.equalTo("Success"))
                 .extract().body().jsonPath().getString("data.token");
+
+        tokenCache.put(role, token);
         return token;
     }
 }
