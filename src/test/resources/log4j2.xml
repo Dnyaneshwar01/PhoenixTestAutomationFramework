@@ -3,10 +3,10 @@
     <Appenders>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %highlight{%-5level} %c::%M():%L - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %highlight{%-5level} %c{1}::%M():%L - %msg%n"/>
         </Console>
 
-        <File name="FileAppender" fileName="logs/automation.log" append="true">
+        <File name="FileAppender" fileName="logs/automation.log" append="false">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1}.%M:%L - %msg%n"/>
         </File>
 

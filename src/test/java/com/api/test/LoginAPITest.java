@@ -4,6 +4,7 @@ import com.api.records.model.UserCredentials;
 import static com.api.utils.SpecUtil.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
@@ -13,6 +14,7 @@ import static io.restassured.RestAssured.*;
  * @author Dnyaneshwar Ubale
  */
 
+@Listeners(com.listeners.APITestListener.class)
 public class LoginAPITest {
 
     private UserCredentials userCredentials;
