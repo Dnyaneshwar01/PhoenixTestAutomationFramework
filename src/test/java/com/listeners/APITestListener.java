@@ -1,5 +1,6 @@
 package com.listeners;
 
+import com.api.utils.AllureEnviromentWriterUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -37,11 +38,12 @@ public class APITestListener implements ITestListener {
         LOGGER.error(result.getThrowable());
     }
 
-    public void onStart(ITestContext context){
+    public void onStart(ITestContext context) {
+        AllureEnviromentWriterUtil.createEnviromentProperties();
         LOGGER.info("***************** Starting the Phoenix Framework *****************");
     }
 
-    public void onFinish(ITestContext context){
+    public void onFinish(ITestContext context) {
         LOGGER.info("***************** Finish  *****************");
     }
 
