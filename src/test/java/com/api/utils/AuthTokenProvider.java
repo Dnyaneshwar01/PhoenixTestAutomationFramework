@@ -4,6 +4,7 @@ import static com.api.constant.Role.*;
 
 import com.api.constant.Role;
 import com.api.records.model.UserCredentials;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +22,7 @@ public class AuthTokenProvider {
     private AuthTokenProvider() {
     }
 
+    @Step("Getting the Auth token for the role")
     public static String getToken(Role role) {
 
         LOGGER.info("Checking if the token for {} is present in the cache", role);

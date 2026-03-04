@@ -1,5 +1,6 @@
 package com.api.utils;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,6 +50,7 @@ public class ConfigManager {
         }
     }
 
+    @Step("Getting property value from the config file")
     public static String getProperty(String key) {
         return prop.getProperty(key);
     }

@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.database.model.MapJobProblemModel;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class MapJobProblelmDao {
                     select * from map_job_problem WHERE tr_job_head_id = ?;
                     """;
 
-
+    @Step("Retriving the Problem details informatiopn from DB for specific job head id")
     public static MapJobProblemModel getProblemDetails(int tr_job_head_id) {
 
         MapJobProblemModel mapJobProblemModel = null;

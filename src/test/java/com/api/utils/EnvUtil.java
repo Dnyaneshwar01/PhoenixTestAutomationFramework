@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +19,7 @@ public class EnvUtil {
 
     }
 
+    @Step("Retriving the secret from the .env file")
     public static String getValue(String varName) {
         LOGGER.info("Reading the value of {} form .env", varName);
         return dotenv.get(varName);

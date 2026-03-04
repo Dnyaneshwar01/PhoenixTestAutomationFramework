@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.database.model.JobHeadModel;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ public class JobHeadDao {
 
     }
 
+    @Step("Retriving the Job head informatiopn from DB for specific customer product id")
     public static JobHeadModel getDataFromJobHead(int tr_customer_id) {
         JobHeadModel jobHeadModel = null;
         try {

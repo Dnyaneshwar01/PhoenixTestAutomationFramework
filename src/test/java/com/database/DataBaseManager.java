@@ -4,6 +4,7 @@ import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -24,6 +25,8 @@ public class DataBaseManager {
     private volatile static HikariDataSource hikariDataSource;
     private static Connection connection;
 
+
+    @Step("Initialization the database connection pool")
     private static void initializePool() {
 
         if (hikariDataSource == null) {
@@ -48,6 +51,7 @@ public class DataBaseManager {
         }
     }
 
+    @Step("Getting the Database Connection")
     public static Connection getConnection() throws SQLException {
 
         if (hikariDataSource == null) {
