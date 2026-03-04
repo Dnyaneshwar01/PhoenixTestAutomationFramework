@@ -3,6 +3,7 @@ package com.api.utils;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +26,7 @@ public class CSVReaderUtility {
 
     }
 
+    @Step("Loading test data from CSV file")
     public static <T> Iterator<T> loadCSV(String pathOfCSVFile, Class<T> bean) {
         LOGGER.info("Loading the CSV file from the path {} ", pathOfCSVFile);
 

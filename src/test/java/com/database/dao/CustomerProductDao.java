@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.database.model.CustomerProductDBModel;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +22,7 @@ public class CustomerProductDao {
 
     }
 
+    @Step("Retriving the Customer product from DB for specific customer product id")
     public static CustomerProductDBModel getCustomerProductData(int tr_customer_product_id) {
 
         CustomerProductDBModel customerProductDBModel = null;

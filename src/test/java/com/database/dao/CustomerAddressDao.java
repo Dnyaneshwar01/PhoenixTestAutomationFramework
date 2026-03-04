@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.database.model.CustomerAddressDBModel;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,6 +31,7 @@ public class CustomerAddressDao {
 
     }
 
+    @Step("Retriving the Customer Address data from Database for specific customer id")
     public static CustomerAddressDBModel getCustomerAddressData(int customerAddressId) {
         Connection connection;
         CustomerAddressDBModel customerAddressDBModel = null;

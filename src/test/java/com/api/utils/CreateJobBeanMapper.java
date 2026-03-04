@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.records.model.*;
 import com.dataproviders.api.bean.CreateJobBean;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ public class CreateJobBeanMapper {
     private CreateJobBeanMapper() {
     }
 
+    @Step("Converting the CreateJobBean to the CreateJob Payload for CreateJobAPI test")
     public static CreateJobPayload mapper(CreateJobBean bean) {
         LOGGER.info("Converting the Create Job bean {} to CreateJobPayload....", bean);
 

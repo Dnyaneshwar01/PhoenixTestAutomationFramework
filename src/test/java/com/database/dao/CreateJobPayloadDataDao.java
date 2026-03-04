@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -57,6 +58,7 @@ public class CreateJobPayloadDataDao {
                          LIMIT 5; 
                     """;
 
+    @Step("Retriving the CreateJob Payload Data from Database")
     public static List<CreateJobBean> getCreateJobPayloadData() {
         Connection connection = null;
         Statement statement;

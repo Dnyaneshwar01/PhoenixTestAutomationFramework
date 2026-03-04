@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DataBaseManager;
 import com.database.model.CustomerDBModel;
+import io.qameta.allure.Step;
 
 import java.sql.*;
 
@@ -14,6 +15,7 @@ public class CustomerDao {
                     Select * from tr_customer Where id = ?
                     """;
 
+    @Step("Retriving the Customer Information from DB for specific customer id")
     public static CustomerDBModel getCustomerInfo(int customerId) {
         Connection conn = null;
         CustomerDBModel customerDBModel = null;

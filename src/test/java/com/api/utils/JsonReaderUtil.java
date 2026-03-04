@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class JsonReaderUtil {
 
+    @Step("Loading test data from JSON file")
     public static <T> Iterator<T> loadJSON(String fileName, Class<T[]> clazz) {
 
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
