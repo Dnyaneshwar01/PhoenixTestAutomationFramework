@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.constant.Role;
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -9,6 +10,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
+import io.restassured.filter.Filter;
 
 import static com.api.utils.ConfigManager.*;
 
@@ -25,10 +27,7 @@ public class SpecUtil {
                 .setBaseUri(ConfigManager.getProperty("BASE_URI"))
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .log(LogDetail.URI)
-                .log(LogDetail.METHOD)
-                .log(LogDetail.HEADERS)
-                .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return request;
     }
@@ -42,10 +41,7 @@ public class SpecUtil {
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .setBody(payload)
-                .log(LogDetail.URI)
-                .log(LogDetail.METHOD)
-                .log(LogDetail.HEADERS)
-                .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return requestSpecification;
     }
@@ -57,10 +53,7 @@ public class SpecUtil {
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
-                .log(LogDetail.URI)
-                .log(LogDetail.METHOD)
-                .log(LogDetail.HEADERS)
-                .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return request;
     }
@@ -72,10 +65,7 @@ public class SpecUtil {
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
                 .setBody(payload)
-                .log(LogDetail.URI)
-                .log(LogDetail.METHOD)
-                .log(LogDetail.HEADERS)
-                .log(LogDetail.BODY)
+                .addFilter(new AllureRestAssured())
                 .build();
         return request;
     }
