@@ -4,6 +4,9 @@ import static com.api.utils.ConfigManager.*;
 import static com.api.utils.SpecUtil.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
+
+import io.qameta.allure.*;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.constant.Role.*;
@@ -13,9 +16,14 @@ import static io.restassured.RestAssured.*;
  * @author Dnyaneshwar Ubale
  */
 
+@Listeners(com.listeners.APITestListener.class)
+@Epic("Job Management")
+@Feature("Master API")
 public class MasterAPITest {
 
-
+    @Story("Master API should bring OEM details , Problem type and Warranty Status")
+    @Description("Verify if the master API is giving correct response")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Verify if the master API is giving correct response", groups = {"api","smoke", "regression"})
     public void masterAPITest() {
 
@@ -34,6 +42,9 @@ public class MasterAPITest {
                 .body(matchesJsonSchemaInClasspath("response-schema/MasterAPIResponseSchema.json"));
     }
 
+    @Story("Master API should bring OEM details , Problem type and Warranty Status")
+    @Description("Verify if the master API gives correct status code for invalid Auth Token")
+    @Severity(SeverityLevel.NORMAL)
     @Test (description = "Verify if the master API gives correct status code for invalid Auth Token", groups = {"api","negative","smoke", "regression"})
     public void invalidTokenMasterAPITest()
     {
@@ -44,6 +55,9 @@ public class MasterAPITest {
                 .statusCode(500);
     }
 
+    @Story("Master API should bring OEM details , Problem type and Warranty Status")
+    @Description("Verify if the master API gives correct status code for NO Auth Token")
+    @Severity(SeverityLevel.NORMAL)
     @Test (description = "Verify if the master API gives correct status code for NO Auth Token", groups = {"api","negative","smoke", "regression"})
     public void verifyMasterAPIWithoutToken(){
         given().baseUri(getProperty("BASE_URI")).header("Authorization","")
