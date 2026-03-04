@@ -2,15 +2,20 @@ package com.api.utils;
 
 import com.api.records.model.*;
 import com.dataproviders.api.bean.CreateJobBean;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateJobBeanMapper {
+    private static final Logger LOGGER = LogManager.getLogger(CreateJobBeanMapper.class);
 
-    private CreateJobBeanMapper(){}
+    private CreateJobBeanMapper() {
+    }
 
-    public static CreateJobPayload mapper(CreateJobBean bean){
-        // Bean --> CreateJobPayload Object
+    public static CreateJobPayload mapper(CreateJobBean bean) {
+        LOGGER.info("Converting the Create Job bean {} to CreateJobPayload....", bean);
 
         int mstServiceLocationId = Integer.parseInt(bean.getMst_service_location_id());
         int mstPlatformId = Integer.parseInt(bean.getMst_platform_id());
@@ -47,12 +52,12 @@ public class CreateJobBeanMapper {
         List<Problems> problemsList = new ArrayList<Problems>();
 
         int problemId = Integer.parseInt(bean.getProblems__id());
-        Problems problems = new Problems(problemId,bean.getProblems__remark());
+        Problems problems = new Problems(problemId, bean.getProblems__remark());
         problemsList.add(problems);
 
-        CreateJobPayload payload = new CreateJobPayload(mstServiceLocationId,mstPlatformId,mstWarrentyStatusId,oemId,
-                customer,customerAddress,customerProduct,problemsList);
-
+        CreateJobPayload payload = new CreateJobPayload(mstServiceLocationId, mstPlatformId, mstWarrentyStatusId, oemId,
+                customer, customerAddress, customerProduct, problemsList);
+        LOGGER.info("Converted the bean {} to CreateJobPayload", payload);
         return payload;
     }
 }
