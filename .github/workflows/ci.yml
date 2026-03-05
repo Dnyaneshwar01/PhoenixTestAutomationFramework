@@ -22,6 +22,9 @@ on:
        options: ['testng.xml', 'Regression.xml', 'testng-datadriven.xml']
        required: true
 
+permissions:
+  contents: write 
+
 jobs:
   tests:
     runs-on: ubuntu-latest
