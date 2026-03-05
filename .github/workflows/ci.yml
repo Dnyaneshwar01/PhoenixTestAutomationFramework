@@ -56,12 +56,14 @@ jobs:
         if: always()
         run: mvn allure:report
 
-      - name: Creating github page branch
+      - name: Deploy to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4.0.0
+        uses: peaceiris/actions-gh-pages@v4
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: target/site/allure-maven-plugin
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/site/allure-maven-plugin
+          publish_branch: gh-pages
+          force_orphan: true
 
       - name: Upload SureFire Report Artifact
         if: always()
