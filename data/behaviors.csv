@@ -1,0 +1,8 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"Job Management","Master API","Master API should bring OEM details , Problem type and Warranty Status","0","0","3","0","0"
+"","","","9","0","21","0","0"
+"Job Management","Job Count","Job Count data is shown correctly","0","0","2","0","0"
+"User Management","Authentication","Valid user should be able to login into the system","0","0","1","0","0"
+"User Management","User Creation","FD Should be able to create job","0","0","1","0","0"
+"User Management","User Details","UserDetails should be shown","0","0","1","0","0"
+"Job Management","Job Details","Job Details is shown correcly for FD","0","0","1","0","0"
