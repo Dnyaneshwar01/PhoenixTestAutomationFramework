@@ -1,6 +1,8 @@
 package com.api.test.datadriven;
 
 import com.api.records.model.UserCredentials;
+import com.api.service.AuthService;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.requestSpec;
@@ -15,6 +17,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginAPIJSONDataDrivenTest {
 
+    AuthService authService;
+
+    @BeforeMethod(description = "Initializing the Auth Service")
+    public void setup() {
+        authService = new AuthService();
+    }
+
     @Test(description = "Verifying if login is working for FD user",
             groups = {"api", "regression", "Datadriven"},
             dataProviderClass = com.dataproviders.DataProviderUtils.class,
@@ -22,9 +31,7 @@ public class LoginAPIJSONDataDrivenTest {
     )
     public void loginAPITest(UserCredentials userCredentials) {
 
-        given().spec(requestSpec(userCredentials))
-                .when().post("login")
-                .then()
+        authService.login(userCredentials).then()
                 .spec(responseSpec_OK())
                 .body("message", equalTo("Success"))
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
