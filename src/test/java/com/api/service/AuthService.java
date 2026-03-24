@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class AuthService {
 
-    private static final String LOGIN_ENDPOINT = "login";
+    private static final String LOGIN_ENDPOINT = "/login";
 
     public Response login(Object userCredentials){
        Response response= given()
