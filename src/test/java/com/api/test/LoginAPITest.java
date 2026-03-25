@@ -41,7 +41,7 @@ public class LoginAPITest {
             , retryAnalyzer = com.api.retry.RetryAnalyzer.class)
     public void loginAPITest() {
         authService.login(userCredentials)
-                .then().log().all()
+                .then()
                 .spec(responseSpec_OK())
                 .body("message", equalTo("Success"))
                 .body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
