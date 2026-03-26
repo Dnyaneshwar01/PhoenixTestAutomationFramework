@@ -44,9 +44,6 @@ public class SpecUtil {
                 .setBody(payload)
                 .addFilter(new SensitiveDataFilter())
                 .addFilter(new AllureRestAssured())
-                .log(LogDetail.URI)
-                .log(LogDetail.METHOD)
-                .log(LogDetail.HEADERS)
                 .build();
         return requestSpecification;
     }
@@ -58,6 +55,7 @@ public class SpecUtil {
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
+                .addFilter(new SensitiveDataFilter())
                 .addFilter(new AllureRestAssured())
                 .build();
         return request;
