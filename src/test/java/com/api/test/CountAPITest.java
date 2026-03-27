@@ -7,7 +7,9 @@ import static com.api.utils.SpecUtil.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import static org.hamcrest.Matchers.*;
 
+import com.api.service.DashboardService;
 import io.qameta.allure.*;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -20,14 +22,19 @@ import org.testng.annotations.Test;
 @Feature("Job Count")
 public class CountAPITest {
 
+    private DashboardService dashboardService;
+
+    @BeforeMethod(description = "Setting up the DashboardService instance")
+    public void setup() {
+        dashboardService = new DashboardService();
+    }
+
     @Story("Job Count data is shown correctly")
     @Description("Verifying the count API is giving correct response")
     @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify the count API is giving correct response", groups = {"api", "smoke", "regression"})
     public void verifyCountAPIResponse() {
-        given().spec(requestSpecWithAuth(FD))
-                .when().get("/dashboard/count")
-                .then().spec(responseSpec_OK())
+        dashboardService.count(FD).then().spec(responseSpec_OK())
                 .body("message", equalTo("Success"))
                 .body("data", notNullValue())
                 .body("data.size()", equalTo(3))
@@ -42,8 +49,6 @@ public class CountAPITest {
     @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify count API gives correct status if Auth not provides", groups = {"api", "negative", "smoke", "regression"})
     public void countAPITest_MissingAuthToken() {
-        given().spec(requestSpec())
-                .when().get("/dashboard/count")
-                .then().spec(responseSpec_TEXT(401));
+        dashboardService.countWithNoAuth().then().spec(responseSpec_TEXT(401));
     }
 }
