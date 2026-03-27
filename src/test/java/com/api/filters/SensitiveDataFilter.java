@@ -53,11 +53,11 @@ public class SensitiveDataFilter implements Filter {
     public void redactHeader(FilterableRequestSpecification requestSpec) {
         List<Header> headerList = requestSpec.getHeaders().asList();
 
-        for (Header h : headerList) {
-            if (h.getName().equalsIgnoreCase("Authorization")) {
-                LOGGER.info("HEADER {} :  {}", h.getName(), "\"[REDACTED]\"");
+        for (Header header : headerList) {
+            if (header.getName().equalsIgnoreCase("Authorization")) {
+                LOGGER.info("HEADER {} :  {}", header.getName(), "\"[REDACTED]\"");
             } else {
-                LOGGER.info("HEADER {} :  {}", h.getName(), h.getValue());
+                LOGGER.info("HEADER {} :  {}", header.getName(), header.getValue());
             }
         }
     }

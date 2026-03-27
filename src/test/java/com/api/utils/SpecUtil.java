@@ -28,6 +28,7 @@ public class SpecUtil {
                 .setBaseUri(ConfigManager.getProperty("BASE_URI"))
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
+                .addFilter(new SensitiveDataFilter())
                 .addFilter(new AllureRestAssured())
                 .build();
         return request;
@@ -69,6 +70,7 @@ public class SpecUtil {
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
                 .setBody(payload)
+                .addFilter(new SensitiveDataFilter())
                 .addFilter(new AllureRestAssured())
                 .build();
         return request;
@@ -77,7 +79,6 @@ public class SpecUtil {
 
     @Step("Expecting the response to have contain type as Application/JSON, Status 200 and Response Time less than 1000ms ")
     public static ResponseSpecification responseSpec_OK() {
-
         ResponseSpecification responseSpecification = new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
                 .expectStatusCode(200)
